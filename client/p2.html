@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn hàng của tôi</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.typekit.net/jun4bcb.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.webshopapp.com/assets/gui-2-0.css?2022-11-01" />
+    <link rel="stylesheet" href="https://cdn.webshopapp.com/assets/gui-responsive-2-0.css?2022-11-01" />
+    <link href="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/new-style.css?20221116094336"
+        rel="Stylesheet" type="text/css">
+    <link href="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/styles.css?20221116094336" rel="Stylesheet"
+        type="text/css">
+    <link href="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/style-2021.css?20221116094336"
+        rel="Stylesheet" type="text/css">
+    <link href="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/custom.css?20221116094336" rel="Stylesheet"
+        type="text/css">
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get("http://localhost:3000/getCategory", function (data, status) {
+                var products = "";
+                for (i = 0; i < data.length; i++) {
+                    products += `
+                    <a class="subitemLink" href="http://localhost:3000/collections/${data[i].idCat}" title="Footies">${data[i].nameCat}</a>`
+                }
+                $('#cate1').html(products);
+            });
+
+            innit();
+            $.get("http://localhost:3000/getShoppingCard/" + localStorage.getItem("lstSP"), function (data, status) {
+                displayProductt(data)
+            });
+            var idUser = localStorage.getItem("idUser");
+            $.get("http://localhost:3000/hoadon/" + idUser, function(data,status){
+                var dh = "";
+                var id = localStorage.getItem("idUser");
+                for( i = 0; i < data.length; i++) {
+                    dh += `<tr>
+                                <td>HD${data[i].idHD}</td>
+                                <td>${data[i].ngaylapHD}</td>
+                                <td>${data[i].tinhtrang === 2 ? 'Đã chuyển' : '' ||data[i].tinhtrang === 1 ? 'Đang chuẩn bị hàng' : '' || data[i].tinhtrang === 0 ? 'Chờ xác nhận' : ''}</td>
+                                <td>
+                                    <a href="/p2-1/${data[i].idHD}">
+                                        <svg id="expand-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                        </svg>
+                                    </a>
+                                        
+                                 
+                                </td>
+                            </tr>`
+                }
+                $('#donhang').html(dh)
+            })
+        });
+        
+
+        function innit() {
+            var user = localStorage.getItem("user");
+            if (user == null || user == "" || user == undefined) {
+                pr = `<a href="/signin" class="svg">
+                                        <img src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336" alt="Account icon" />
+                                            <span id="note1">Đăng nhập</span>
+                                    </a>`;
+                $("#show-nameKH").html("");
+                $("#note2").html(pr);
+
+
+            }
+            else {
+                ps = `<a href="/p1" class="svg">
+                                        <img src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336" alt="Account icon" />
+                                            <span id="note1">Hi ${user}</span>
+                                    </a>`
+                $("#show-nameKH").html("Xin chào " + user);
+                $("#note2").html(ps);
+
+            }
+        }
+        function outX() {
+            
+            localStorage.clear()
+            
+        }
+
+    </script>
+   
+</head>
+
+<body>
+    <header id="master-header" class="site-header">
+        <div class="relative">
+            <div class="topbar">
+                <div class="container flex align-center justify-space-between" style="min-height: 0 !important;">
+
+
+
+                    <ul class="mobile-hide">
+                        <li><a href="#" title="Retourneren">Cửa hàng</a></li>
+                        <li><a href="#" title="Klantenservice">1800 54 54 57</a></li>
+                        <li><a href="#" title="Klantenservice" id="show-nameKH"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="middle-bar mobile-hide">
+                <div class="container">
+                    <div class="header-wrapper flex align-center justify-space-between full-width bottom-bar">
+                        <div class="header desktop-hide">Menu <span class="icon icon-before icon-close"></span></div>
+
+
+                        <ul class="menu flex align-center justify-space-between">
+                            <li class="menu-item menu-item-has-children">
+                                <a href="" title="Heren">Trang sức</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                                <div class="col-xs-12 link">
+                                                    <a href="/san-pham">Tất cả trang sức</a>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>Danh mục sản
+                                                                phẩm</strong></li>
+
+
+                                                        <li class="menu-item" id="cate1">
+
+
+                                                        </li>
+
+
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>#</strong></li>
+                                                        <li class="menu-item">
+                                                            <a class="subitemLink" href="/bamboe-sokken/heren/"
+                                                                title="Bamboe sokken">#</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>#</strong></li>
+                                                        <li class="menu-item">
+                                                            <a class="subitemLink" href="/sportsokken/heren/"
+                                                                title="Sportsokken">#</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/damessokken/" title="Dames">Đồng hồ</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                            <div class="col-xs-12 link">
+                                                <a href="/damessokken/">Tất cả đồng hồ</a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-3 flex align-center">
+                                                <ul class="column-submenu">
+                                                    <li class="menu-item hoofdcat"><strong>Thương hiệu</strong></li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/footies/dames/"
+                                                            title="Footies">Gucci</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/merken/" title="Merken">Quà tặng</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                            <div class="col-xs-12 link">
+                                                <a href="/merken/">Tất cả quà tặng</a>
+                                            </div>
+
+
+                                            <div class="col-xs-12 col-sm-12 col-md-3 flex align-center">
+                                                <ul class="column-submenu">
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/sarlini"
+                                                            title="Sarlini">Cho nàng</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/marianne-panty"
+                                                            title="Marianne Panty">Cho chàng</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/buru-bamboo"
+                                                            title="Boru Bamboo">Cho cha</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/heatkeeper"
+                                                            title="Heatkeeper">Cho mẹ</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item">
+                                <a href="/blog" title="Cadeaus">Blog</a>
+                            </li>
+                        </ul>
+
+
+
+                        <div class="col-logo flex justify-center">
+                            <a href="/" rel="home"><img src="https://cdn.pnj.io/images/logo/pnj.com.vn.png"
+                                    alt="" /></a>
+                        </div>
+
+
+                        <div class="col-right flex align-center justify-end" type="button">
+                            <ul class="right-menu flex align-center">
+                                <li><a href="#" class="svg " data-modal="#modal3" class=""><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-search.svg?20221116094336"
+                                            alt="Search icon" /><span>Tìm kiếm</span></a></li>
+
+                                <li id="note2">
+
+                                </li>
+
+                                <li><a href="/giohang" class="items-in-cart relative svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-bag.svg?20221116094336"
+                                            alt="Account icon" /><span>Giỏ hàng</span><i
+                                            class="item-added-total">0</i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="middle-bar desktop-hide">
+                <div class="container">
+                    <div class="header-wrapper flex align-center justify-space-between full-width">
+                        <div class="col-left flex align-center">
+                            <a href="javascript:void(0);" class="menu-toggle icon icon-before icon-menu noma"></a>
+                        </div>
+
+                        <div class="col-logo">
+                            <a href="https://www.websocks.nl/" rel="home">
+                                <img src="https://cdn.pnj.io/images/logo/pnj.com.vn.png" alt=""
+                                    style="max-width: 100px;" />
+                            </a>
+                        </div>
+
+                        <div class="col-right flex align-center justify-end">
+                            <ul class="right-menu flex align-center">
+                                <li>
+                                    <a href="https://www.websocks.nl/account/" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336"
+                                            alt="Account icon" /></a>
+                                </li>
+                                <li>
+                                    <a href="/giohang" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-bag.svg?20221116094336"
+                                            alt="Account icon" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-bar desktop-hide">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main id="main" class="col-xs-12">
+            <div class="row">
+                <section class="registration-page col-xs-12">
+                    <div class="row">
+                        <div class="container popin effect">
+
+                            <link rel="stylesheet" type="text/css"
+                                href="https://cdn.webshopapp.com/assets/gui-core.css?2022-11-01">
+                            <script src="https://cdn.webshopapp.com/assets/gui-core.js?2022-11-01"></script>
+
+                            <div class="gui gui-account">
+                                <div class="gui-col2-left">
+                                    <div class="gui-col2-left-col1" role="complementary">
+
+                                        <div class="gui-block gui-account-links" role="navigation"
+                                            aria-labelledby="gui-account-side-my-account-title">
+                                            <div class="gui-block-title"><strong id="gui-account-side-my-account-title">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Tài khoản của tôi
+                                                        </font>
+                                                    </font>
+                                                </strong></div>
+                                            <div class="gui-block-content">
+                                                <ul class="gui-block-linklist">
+
+                                                    <li><a href="/p1">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Thông tin tài
+                                                                    khoản</font>
+                                                            </font>
+                                                        </a></li>
+
+                                                    <li><a href="/p3">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Địa chỉ giao
+                                                                    hàng</font>
+                                                            </font>
+                                                        </a></li>
+                                                    <li class="gui-active"><a href="/p2">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Đơn đặt hàng
+                                                                    của tôi</font>
+                                                            </font>
+                                                        </a></li>
+
+
+                                                    <li><a href="/giohang">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">Giỏ hàng của
+                                                                    tôi</font>
+                                                            </font>
+                                                        </a></li>
+
+                                                    <li><a style="cursor: pointer;">
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;" onclick="outX()">
+                                                                    Đăng xuất
+                                                                </font>
+                                                            </font>
+                                                        </a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="gui-col2-left-col2">
+                                        <div class="gui-page-title" role="heading" aria-level="1">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Đơn mua
+                                                </font>
+                                            </font>
+                                        </div>
+                                        <div class="gui-block" role="group"
+                                            aria-labelledby="gui-account-info-account-info-title">
+                                            <div class="gui-block-title" role="heading" aria-level="2"
+                                                id="gui-account-info-account-info-title">
+                                                <strong>
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">
+                                                        </font>
+                                                    </font>
+                                                </strong>
+                                            </div>
+                                            <div class="gui-block-content">
+                                                <div class="gui-form">
+
+
+                                                    <div class="card shadow mb-4">
+
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <div class="gui-block" role="group"
+                                                                    aria-labelledby="gui-account-orders-info-title">
+                                                                    <div class="gui-block-title" role="heading"
+                                                                        aria-level="2">
+                                                                        <strong>
+                                                                            <font style="vertical-align: inherit;">
+                                                                                <font style="vertical-align: inherit;">
+                                                                                    Những đơn đặt hàng gần đây
+                                                                                </font>
+                                                                            </font>
+                                                                        </strong>
+                                                                    </div>
+                                                                    <div class="gui-block-content">
+                                                                        <div class="gui-table gui-orders">
+                                                                            <table cellspacing="0">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="ordernr"><span
+                                                                                                class="gui-nowrap">
+                                                                                                <font style="vertical-align: inherit;">
+                                                                                                    <font style="vertical-align: inherit;">
+                                                                                                        Đơn hàng #
+                                                                                                    </font>
+                                                                                                </font>
+                                                                                            </span>
+                                                                                        </th>
+                                                                                        <th class="date"><span
+                                                                                                class="gui-nowrap">
+                                                                                                <font style="vertical-align: inherit;">
+                                                                                                    <font style="vertical-align: inherit;">
+                                                                                                        Cập nhật</font>
+                                                                                                </font>
+                                                                                            </span>
+                                                                                        </th>
+                                                                                        
+                                                                                        
+                                                                                        <th class="status" colspan="2">
+                                                                                            <span
+                                                                                                class="status gui-nowrap">
+                                                                                                <font style="vertical-align: inherit;">
+                                                                                                    <font style="vertical-align: inherit;">
+                                                                                                        Trạng thái
+                                                                                                    </font>
+                                                                                                </font>
+                                                                                            </span>
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody id="donhang">
+                                                                                    
+                                                                                    
+                                                                                </tbody>
+
+                                                                                
+                                                                            </table>
+                                                                        </div>
+                                                                        
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+
+
+
+
+                                        <div class="gui-buttons">
+                                            <div class="gui-left"><a href="/" class="gui-button-link"
+                                                    title="Quay lại Trang tổng quan">
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">« Quay lại trang mua sắm
+                                                        </font>
+                                                    </font>
+                                                </a></div>
+                                                
+                                             
+                                               
+                                            <div class="gui-clear"></div>
+                                        </div>
+                                    </div>
+                                    <div class="gui-clear"></div>
+                                </div>
+                            </div>
+                            <input type="submit" class="gui-hide">
+
+                           
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+    
+</body>
+
+</html>

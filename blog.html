@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.typekit.net/jun4bcb.css" rel="stylesheet">
+
+
+    <link href="/css/trang-suc/ts3.css" rel="Stylesheet" type="text/css">
+    <link href="/css/trang-suc/ts4.css" rel="Stylesheet" type="text/css">
+    <link href="/css/trang-suc/ts5.css" rel="Stylesheet" type="text/css">
+    <link href="/css/trang-suc/ts6.css" rel="Stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/trang-suc/ts7.css" />
+    <link rel="stylesheet" href="/css/trang-suc/ts8.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            innit();
+
+            $.get("http://localhost:3000/getCategory", function (data, status) {
+                var products = "";
+                for (i = 0; i < data.length; i++) {
+                    products += `
+                    <a class="subitemLink" href="http://localhost:3000/collections/${data[i].idCat}" title="Footies">${data[i].nameCat}</a>`
+                }
+                $('#cate1').html(products);
+            });
+            displayNumOfProductsInCart()
+        });
+
+        function displayNumOfProductsInCart() {
+            $('.gg2').text(numOfProductsInCart);
+        }
+
+        function innit() {
+            var user = localStorage.getItem("user");
+            if (user == null || user == "" || user == undefined) {
+                pr = `<a href="/signin" class="svg">
+                                        <img src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336" alt="Account icon" />
+                                            <span id="note1">Đăng nhập</span>
+                                    </a>`;
+                $("#show-nameKH").html("");
+                $("#note2").html(pr);
+
+
+            }
+            else {
+                ps = `<a href="/p1" class="svg">
+                                        <img src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336" alt="Account icon" />
+                                            <span id="note1">Hi ${user}</span>
+                                    </a>`
+                $("#show-nameKH").html("Xin chào " + user);
+                $("#note2").html(ps);
+
+            }
+        }
+    </script>
+    <script>
+        $.get("", function(data, status){
+            
+        })
+    </script>
+</head>
+
+<body>
+    <header id="master-header" class="site-header">
+        <div class="relative">
+            <div class="topbar">
+                <div class="container flex align-center justify-space-between" style="min-height: 0 !important;">
+
+
+
+                    <ul class="mobile-hide">
+                        <li><a href="#" title="Retourneren">Cửa hàng</a></li>
+                        <li><a href="#" title="Klantenservice">1800 54 54 57</a></li>
+
+                        <li><a href="#" title="Klantenservice" id="show-nameKH"></a></li>
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+
+            <div class="middle-bar mobile-hide">
+                <div class="container">
+                    <div class="header-wrapper flex align-center justify-space-between full-width bottom-bar">
+                        <div class="header desktop-hide">Menu <span class="icon icon-before icon-close"></span></div>
+
+
+                        <ul class="menu flex align-center justify-space-between">
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/" title="Heren">Trang sức</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                                <div class="col-xs-12 link">
+                                                    <a href="/">Tất cả trang sức</a>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>Danh mục sản
+                                                                phẩm</strong></li>
+
+
+                                                        <li class="menu-item" id="cate1">
+
+
+                                                        </li>
+
+
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>#</strong></li>
+                                                        <li class="menu-item">
+                                                            <a class="subitemLink" href="/bamboe-sokken/heren/"
+                                                                title="Bamboe sokken">#</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>#</strong></li>
+                                                        <li class="menu-item">
+                                                            <a class="subitemLink" href="/sportsokken/heren/"
+                                                                title="Sportsokken">#</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/damessokken/" title="Dames">Đồng hồ</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                            <div class="col-xs-12 link">
+                                                <a href="/damessokken/">Tất cả đồng hồ</a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-3 flex align-center">
+                                                <ul class="column-submenu">
+                                                    <li class="menu-item hoofdcat"><strong>Thương hiệu</strong></li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/footies/dames/"
+                                                            title="Footies">Gucci</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/merken/" title="Merken">Quà tặng</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                            <div class="col-xs-12 link">
+                                                <a href="/merken/">Tất cả quà tặng</a>
+                                            </div>
+
+
+                                            <div class="col-xs-12 col-sm-12 col-md-3 flex align-center">
+                                                <ul class="column-submenu">
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/sarlini"
+                                                            title="Sarlini">Cho nàng</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/marianne-panty"
+                                                            title="Marianne Panty">Cho chàng</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/buru-bamboo"
+                                                            title="Boru Bamboo">Cho cha</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/heatkeeper"
+                                                            title="Heatkeeper">Cho mẹ</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item">
+                                <a href="/blog" title="Cadeaus">Blog</a>
+                            </li>
+                        </ul>
+
+
+
+                        <div class="col-logo flex justify-center">
+                            <a href="/" rel="home"><img src="https://cdn.pnj.io/images/logo/pnj.com.vn.png"
+                                    alt="" /></a>
+                        </div>
+
+
+                        <div class="col-right flex align-center justify-end" type="button">
+                            <ul class="right-menu flex align-center">
+                                <li><a href="#" class="svg " data-modal="#modal3" class=""><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-search.svg?20221116094336"
+                                            alt="Search icon" /><span>Tìm kiếm</span></a></li>
+
+                                <li id="note2"></li>
+
+                                <li><a href="/giohang" class="items-in-cart relative svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-bag.svg?20221116094336"
+                                            alt="Account icon" /><span>Giỏ hàng</span><i
+                                            class="item-added-total gg2">0</i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="middle-bar desktop-hide">
+                <div class="container">
+                    <div class="header-wrapper flex align-center justify-space-between full-width">
+                        <div class="col-left flex align-center">
+                            <a href="javascript:void(0);" class="menu-toggle icon icon-before icon-menu noma"></a>
+                        </div>
+
+                        <div class="col-logo">
+                            <a href="https://www.websocks.nl/" rel="home">
+                                <img src="https://cdn.pnj.io/images/logo/pnj.com.vn.png" alt=""
+                                    style="max-width: 100px;" />
+                            </a>
+                        </div>
+
+                        <div class="col-right flex align-center justify-end">
+                            <ul class="right-menu flex align-center">
+                                <li>
+                                    <a href="https://www.websocks.nl/p1/" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336"
+                                            alt="Account icon" /></a>
+                                </li>
+                                <li>
+                                    <a href="/giohang" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-bag.svg?20221116094336"
+                                            alt="Account icon" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-bar desktop-hide">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="wrapper">
+        <main id="main" class="col-xs-12">
+            <div class="row">
+               
+                <section id="anchor" class="blog-articles col-xs-12">
+                    <div class="container">
+                        <div class="row">
+                            <ul id="articles-list" class="articles-list col-lg-9 flex flex-wrap"
+                                data-ids="331803,330322,329378,324448,323814">
+                                <!-- <li class="popin col-md-6 col-xs-12 effect">
+                                    <a href="https://www.websocks.nl/blogs/websocks/sokken-met-print-dit-zijn-de-leukste-sokken/"
+                                        title="Tất có in hình: đây là những đôi tất đẹp nhất!" class="item-wrapper">
+                                        <div class="thumb-wrapper">
+                                            <figure class="thumb" style="overflow: hidden;">
+                                                <img class="js-focal-point-image"
+                                                    src="https://cdn.webshopapp.com/shops/277570/files/360754890/image.jpg"
+                                                    alt="Tất có in hình: đây là những đôi tất đẹp nhất!"
+                                                    data-focus-left=".5" data-focus-right=".5" data-focus-top=".5"
+                                                    data-focus-bottom=".5"
+                                                    style="position: relative; width: 313px; left: 0px; height: 313px; top: -26.5px;">
+                                            </figure>
+                                        </div>
+                                        <div class="desc">
+                                            <p>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Tất có in hình: đây là những
+                                                        đôi tất đẹp nhất!</font>
+                                                </font>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="popin col-md-6 col-xs-12 effect">
+                                    <a href="https://www.websocks.nl/blogs/websocks/sneakersokken-alles-wat-je-moet-weten-over-deze-ko/"
+                                        title="Vớ giày thể thao: mọi thứ bạn cần biết về những đôi tất ngắn này"
+                                        class="item-wrapper">
+                                        <div class="thumb-wrapper">
+                                            <figure class="thumb" style="overflow: hidden;">
+                                                <img class="js-focal-point-image"
+                                                    src="https://cdn.webshopapp.com/shops/277570/files/359365948/image.jpg"
+                                                    alt="Vớ giày thể thao: mọi thứ bạn cần biết về những đôi tất ngắn này"
+                                                    data-focus-left=".5" data-focus-right=".5" data-focus-top=".5"
+                                                    data-focus-bottom=".5"
+                                                    style="position: relative; width: 390px; left: -38.5px; height: 260px; top: 0px;">
+                                            </figure>
+                                        </div>
+                                        <div class="desc">
+                                            <p>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Vớ giày thể thao: mọi thứ bạn
+                                                        cần biết về những đôi tất ngắn này</font>
+                                                </font>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="popin col-md-6 col-xs-12 effect">
+                                    <a href="https://www.websocks.nl/blogs/websocks/bamboe-sokken-comfortabel-duurzaam-en-milieubewust/"
+                                        title="Vớ tre: thoải mái, bền vững và thân thiện với môi trường"
+                                        class="item-wrapper">
+                                        <div class="thumb-wrapper">
+                                            <figure class="thumb" style="overflow: hidden;">
+                                                <img class="js-focal-point-image"
+                                                    src="https://cdn.webshopapp.com/shops/277570/files/352116532/image.jpg"
+                                                    alt="Vớ tre: thoải mái, bền vững và thân thiện với môi trường"
+                                                    data-focus-left=".5" data-focus-right=".5" data-focus-top=".5"
+                                                    data-focus-bottom=".5"
+                                                    style="position: relative; width: 390px; left: -38.5px; height: 260px; top: 0px;">
+                                            </figure>
+                                        </div>
+                                        <div class="desc">
+                                            <p>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Vớ tre: thoải mái, bền vững
+                                                        và thân thiện với môi trường</font>
+                                                </font>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li> -->
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

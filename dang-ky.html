@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+
+
+
+
+
+
+    <title>Tạo tài khoản </title>
+
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.typekit.net/jun4bcb.css" rel="stylesheet">
+    <link href="/css/trang-suc/ts2.css" rel="stylesheet">
+    <link href="/css/trang-suc/ts3.css" rel="Stylesheet" type="text/css">
+    <link href="/css/trang-suc/ts4.css" rel="Stylesheet" type="text/css">
+    <link href="/css/trang-suc/ts5.css" rel="Stylesheet" type="text/css">
+    <link href="/css/trang-suc/ts6.css" rel="Stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/trang-suc/ts7.css" />
+    <link rel="stylesheet" href="/css/trang-suc/ts8.css" />
+
+
+    <!-- Global site tag (gtag.js) - Google Ads: 711085569 -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.get("http://localhost:3000/getCategory", function (data, status) {
+                var products = "";
+                for (i = 0; i < data.length; i++) {
+                    products += `
+                    <a class="subitemLink" href="http://localhost:3000/collections/${data[i].idCat}" title="Footies">${data[i].nameCat}</a>`
+                }
+                $('#cate1').html(products);
+            });
+        });
+
+
+    </script>
+    <script>
+        function signup() {
+            var ho = $("#hoz").val();
+            var ten = $("#tenz").val();
+            var email = $("#emailz").val();
+            var sdt = $("#sdtz").val();
+            var diachi = $("#diachiz").val();
+            var pass = $("#matkhauz").val();
+            var pass_confirm = $("#matkhauzz").val();
+            var tinh = localStorage.getItem('address_1_saved')
+            var huyen = localStorage.getItem('address_2_saved')
+            
+
+            if (ho == "" || ten == "" || email == "" || sdt == "" || diachi == "" || pass == "" || pass_confirm == "" || tinh == "" || huyen == "" ) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+            } else if (pass != pass_confirm) {
+                alert("Xác nhận mật khẩu không chính xác!");
+            } else {
+                $.post("/searchemail", {
+                    email: email,
+                }, function (data, status) {
+                    if (!data || data.length == 0) {
+                        $.post("/inputUser", {
+                            ho: ho,
+                            ten: ten,
+                            email: email,
+                            sdt: sdt,
+                            diachi: diachi,
+                            pass: pass,
+                            tinh: tinh,
+                            huyen: huyen,
+                            
+                            if(condition){
+                                alert("Đăng ký thành công!");
+                                window.location.href="/signin";
+                            }
+                        }, function (data, status) {
+                            if (status == "success") {
+                                alert("Đăng ký thành công!");
+                                window.location.href="/signin";
+                            } else {
+                                alert("Lỗi khi đăng ký. Vui lòng thử lại!");
+                            }
+                        });
+                    } else {
+                        alert("Email đã được sử dụng!");
+                    }
+                });
+            }
+        }
+
+        
+
+    </script>
+    <!-- <script>
+        function signup() {
+            
+            $.post("/searchsdt", {
+                sdt: $("#sdtz").val(),
+            }, function(data, status){
+                if(!data || data.length == 0) {
+                    $.post("/inputUser", {
+                        ho: $("#hoz").val(),
+                        ten: $("#tenz").val(),
+                        email: $("#emailz").val(),
+                        sdt: $("#sdtz").val(),
+                        diachi: $("#diachiz").val(),
+                        pass: $("#matkhauz").val(),
+                        tinh: $("#city").val(),
+                        huyen: $("#district").val(),
+                        xa: $("#ward").val(),
+                        if (condition) {
+                            alert("Đăng ký thành công!");
+                            window.location.href="/signin";
+                        }
+
+                    }, function(data, status) {
+                        
+                            alert("Đăng ký thành công!");
+                            window.location.href="/signin";
+                        
+                        
+                    })
+                } else {
+                    alert("Số điện thoại đã được sử dụng!");
+                }
+            })
+        }
+            
+
+    </script> -->
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+    <header id="master-header" class="site-header">
+        <div class="relative">
+            <div class="topbar">
+                <div class="container flex align-center justify-space-between" style="min-height: 0 !important;">
+
+
+
+                    <ul class="mobile-hide">
+                        <li><a href="#" title="Retourneren">Cửa hàng</a></li>
+                        <li><a href="#" title="Klantenservice">1800 54 54 57</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="middle-bar mobile-hide">
+                <div class="container">
+                    <div class="header-wrapper flex align-center justify-space-between full-width bottom-bar">
+                        <div class="header desktop-hide">Menu <span class="icon icon-before icon-close"></span></div>
+
+
+                        <ul class="menu flex align-center justify-space-between">
+                            <li class="menu-item menu-item-has-children">
+                                <a href="" title="Heren">Trang sức</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                                <div class="col-xs-12 link">
+                                                    <a href="/san-pham">Tất cả trang sức</a>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>Danh mục sản
+                                                                phẩm</strong></li>
+
+
+                                                        <li class="menu-item" id="cate1">
+
+
+                                                        </li>
+
+
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>#</strong></li>
+                                                        <li class="menu-item">
+                                                            <a class="subitemLink" href="/bamboe-sokken/heren/"
+                                                                title="Bamboe sokken">#</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 flex align-center">
+                                                    <ul class="column-submenu">
+                                                        <li class="menu-item hoofdcat"><strong>#</strong></li>
+                                                        <li class="menu-item">
+                                                            <a class="subitemLink" href="/sportsokken/heren/"
+                                                                title="Sportsokken">#</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/damessokken/" title="Dames">Đồng hồ</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                            <div class="col-xs-12 link">
+                                                <a href="/damessokken/">Tất cả đồng hồ</a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-3 flex align-center">
+                                                <ul class="column-submenu">
+                                                    <li class="menu-item hoofdcat"><strong>Thương hiệu</strong></li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/footies/dames/"
+                                                            title="Footies">Gucci</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item menu-item-has-children">
+                                <a href="/merken/" title="Merken">Quà tặng</a>
+                                <div class="sub-menu-wrap">
+                                    <div class="container">
+                                        <div class="row row-20">
+                                            <div class="desktop-hide back-link icon icon-before">Quay lại</div>
+                                            <div class="col-xs-12 link">
+                                                <a href="/merken/">Tất cả quà tặng</a>
+                                            </div>
+
+
+                                            <div class="col-xs-12 col-sm-12 col-md-3 flex align-center">
+                                                <ul class="column-submenu">
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/sarlini"
+                                                            title="Sarlini">Cho nàng</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/marianne-panty"
+                                                            title="Marianne Panty">Cho chàng</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/buru-bamboo"
+                                                            title="Boru Bamboo">Cho cha</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a class="subitemLink" href="/merken/heatkeeper"
+                                                            title="Heatkeeper">Cho mẹ</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li class="menu-item">
+                                <a href="/blog" title="Cadeaus">Blog</a>
+                            </li>
+                        </ul>
+
+
+
+                        <div class="col-logo flex justify-center">
+                            <a href="/" rel="home"><img src="https://cdn.pnj.io/images/logo/pnj.com.vn.png"
+                                    alt="" /></a>
+                        </div>
+
+
+                        <div class="col-right flex align-center justify-end" type="button">
+                            <ul class="right-menu flex align-center">
+                                <li><a href="#" class="svg " data-modal="#modal3" class=""><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-search.svg?20221116094336"
+                                            alt="Search icon" /><span>Tìm kiếm</span></a></li>
+
+                                <li><a href="/signin" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336"
+                                            alt="Account icon" /><span>Đăng nhập</span></a></li>
+
+                                <li><a href="/giohang" class="items-in-cart relative svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-bag.svg?20221116094336"
+                                            alt="Account icon" /><span>Giỏ hàng</span><i
+                                            class="item-added-total">0</i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="middle-bar desktop-hide">
+                <div class="container">
+                    <div class="header-wrapper flex align-center justify-space-between full-width">
+                        <div class="col-left flex align-center">
+                            <a href="javascript:void(0);" class="menu-toggle icon icon-before icon-menu noma"></a>
+                        </div>
+
+                        <div class="col-logo">
+                            <a href="https://www.websocks.nl/" rel="home">
+                                <img src="https://cdn.pnj.io/images/logo/pnj.com.vn.png" alt=""
+                                    style="max-width: 100px;" />
+                            </a>
+                        </div>
+
+                        <div class="col-right flex align-center justify-end">
+                            <ul class="right-menu flex align-center">
+                                <li>
+                                    <a href="https://www.websocks.nl/p1/" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-account.svg?20221116094336"
+                                            alt="Account icon" /></a>
+                                </li>
+                                <li>
+                                    <a href="/giohang" class="svg"><img
+                                            src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/icon-bag.svg?20221116094336"
+                                            alt="Account icon" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-bar desktop-hide">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <main id="main" class="col-xs-12">
+            <div class="row">
+
+                <section class="registration-page col-xs-12">
+                    <div class="row">
+                        <div class="container popin">
+
+                            <div class="gui gui-register">
+
+                                <div class="gui-page-title" role="heading" aria-level="1">Tạo tài khoản mới</div>
+
+
+                                <div class="gui-block gui-margin">
+                                    <div class="gui-block-title">
+                                        <strong id="gui-form-register-account-info-title">Thông tin khách hàng</strong>
+
+                                    </div>
+                                    <div class="gui-block-content">
+                                        <div class="gui-form">
+
+                                            <div class="gui-col2-equal">
+                                                <div class="gui-col2-equal-col1">
+                                                    <div class="gui-field">
+                                                        <label>Họ: </label>
+
+                                                        <div class="gui-input">
+                                                            <input id="hoz" type="text" placeholder="Nhập họ" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gui-col2-equal-col2">
+                                                    <div class="gui-field">
+                                                        <label>Tên: </label>
+
+                                                        <div class="gui-input">
+                                                            <input id="tenz" type="text" placeholder="Nhập tên" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gui-clear"></div>
+                                            </div>
+                                            <div class="gui-spacer"></div>
+
+                                            <div class="gui-col2-equal">
+                                                <div class="gui-col2-equal-col1">
+                                                    <div class="gui-field">
+                                                        <label>E-mail: </label>
+
+                                                        <div class="gui-input">
+                                                            <input id="emailz" type="email" placeholder="Nhập e-mail" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gui-clear"></div>
+                                            </div>
+
+                                            <div class="gui-spacer"></div>
+                                            <div class="gui-col2-equal">
+                                                <div class="gui-col2-equal-col1">
+                                                    <div class="gui-field">
+                                                        <label>Số điện thoại:</label>
+
+                                                        <div class="gui-input">
+                                                            <input id="sdtz" type="text"
+                                                                placeholder="Nhập số điện thoại" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gui-clear"></div>
+                                            </div>
+
+
+                                            <div class="gui-spacer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="gui-block gui-margin">
+                                    <div class="gui-block-title">
+                                        <strong>Địa chỉ nhận hàng</strong>
+                                    </div>
+
+                                    <div class="gui-block-content">
+                                        <div class="gui-col2-equal">
+                                            <div class="gui-col2-equal-col1">
+                                                <div class="gui-field">
+
+
+                                                    <div class="gui-input">
+                                                        <select class="" name="calc_shipping_provinces"
+                                                            style="border: 1px solid #f1f1f1; height: 50px; padding: 0 34px 0 20px; width: 270px; margin-top: 10px;"
+                                                            id="city" aria-label=".form-select-sm">
+                                                            <option value="" selected>Chọn tỉnh thành</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gui-col2-equal-col2">
+                                                <div class="gui-field">
+
+
+                                                    <div class="gui-input">
+                                                        <select class="" name="calc_shipping_district"
+                                                            style="border: 1px solid #f1f1f1; height: 50px; padding: 0 34px 0 20px; width: 270px; margin-top: 10px;"
+                                                            id="district" aria-label=".form-select-sm">
+                                                            <option value="" selected>Chọn quận huyện</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input class="billing_address_1" name="" type="hidden" value="">
+                                            <input class="billing_address_2" name="" type="hidden" value="">
+                                            
+                                            <script src="https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js"></script>
+                                            <script>
+                                                if (address_2 = localStorage.getItem('address_2_saved')) {
+                                                $('select[name="calc_shipping_district"] option').each(function() {
+                                                    if ($(this).text() == address_2) {
+                                                    $(this).attr('selected', '')
+                                                    }
+                                                })
+                                                $('input.billing_address_2').attr('value', address_2)
+                                                }
+                                                if (district = localStorage.getItem('district')) {
+                                                $('select[name="calc_shipping_district"]').html(district)
+                                                $('select[name="calc_shipping_district"]').on('change', function() {
+                                                    var target = $(this).children('option:selected')
+                                                    target.attr('selected', '')
+                                                    $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+                                                    address_2 = target.text()
+                                                    $('input.billing_address_2').attr('value', address_2)
+                                                    district = $('select[name="calc_shipping_district"]').html()
+                                                    localStorage.setItem('district', district)
+                                                    localStorage.setItem('address_2_saved', address_2)
+                                                })
+                                                }
+                                                $('select[name="calc_shipping_provinces"]').each(function() {
+                                                var $this = $(this),
+                                                    stc = ''
+                                                c.forEach(function(i, e) {
+                                                    e += +1
+                                                    stc += '<option value=' + e + '>' + i + '</option>'
+                                                    $this.html('<option value="">Tỉnh / Thành phố</option>' + stc)
+                                                    if (address_1 = localStorage.getItem('address_1_saved')) {
+                                                    $('select[name="calc_shipping_provinces"] option').each(function() {
+                                                        if ($(this).text() == address_1) {
+                                                        $(this).attr('selected', '')
+                                                        }
+                                                    })
+                                                    $('input.billing_address_1').attr('value', address_1)
+                                                    }
+                                                    $this.on('change', function(i) {
+                                                    i = $this.children('option:selected').index() - 1
+                                                    var str = '',
+                                                        r = $this.val()
+                                                    if (r != '') {
+                                                        arr[i].forEach(function(el) {
+                                                        str += '<option value="' + el + '">' + el + '</option>'
+                                                        $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>' + str)
+                                                        })
+                                                        var address_1 = $this.children('option:selected').text()
+                                                        var district = $('select[name="calc_shipping_district"]').html()
+                                                        localStorage.setItem('address_1_saved', address_1)
+                                                        localStorage.setItem('district', district)
+                                                        $('select[name="calc_shipping_district"]').on('change', function() {
+                                                        var target = $(this).children('option:selected')
+                                                        target.attr('selected', '')
+                                                        $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+                                                        var address_2 = target.text()
+                                                        $('input.billing_address_2').attr('value', address_2)
+                                                        district = $('select[name="calc_shipping_district"]').html()
+                                                        localStorage.setItem('district', district)
+                                                        localStorage.setItem('address_2_saved', address_2)
+                                                        })
+                                                    } else {
+                                                        $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>')
+                                                        district = $('select[name="calc_shipping_district"]').html()
+                                                        localStorage.setItem('district', district)
+                                                        localStorage.removeItem('address_1_saved', address_1)
+                                                    }
+                                                    })
+                                                })
+                                                })
+                                            </script>
+
+                                        </div>
+                                        <div class="gui-form">
+                                            <div class="gui-field">
+                                                <label>Địa chỉ:</label>
+
+                                                <div class="gui-input">
+                                                    <input id="diachiz" type="text"
+                                                        placeholder="Nhập số nhà, tên đường, phường/xã" />
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="gui-block gui-margin">
+                                    <div class="gui-block-title"><strong>Mật khẩu</strong></div>
+                                    <div class="gui-block-content">
+                                        <div class="gui-form">
+                                            <div class="gui-col2-equal">
+                                                <div class="gui-col2-equal-col1">
+                                                    <div class="gui-field">
+                                                        <label>Mật khẩu:</label>
+
+                                                        <div class="gui-input">
+                                                            <input id="matkhauz" type="password"
+                                                                placeholder="Nhập mật khẩu" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gui-col2-equal-col2">
+                                                    <div class="gui-field">
+                                                        <label>Xác nhận mật khẩu:
+                                                        </label>
+
+                                                        <div class="gui-input">
+                                                            <input id="matkhauzz" type="password"
+                                                                placeholder="Xác nhận mật khẩu" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="gui-clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="gui-required" id="show-sdt-2"></div>
+                                <div class="gui-buttons gui-border">
+                                    <div class="gui-left">
+                                        <a href="/signin" class="gui-button-link" title="Terug">&laquo; Quay lại trang
+                                            đăng nhâp</a>
+                                    </div>
+                                    <div class="gui-right">
+                                        <a href="" onclick="signup()">Đăng ký</a>
+                                    </div>
+                                    <div class="gui-clear"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+
+
+
+
+    <script src="/js/home/home1.js" type="text/javascript"></script>
+    <script src="/js/home/home3.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript"
+        src="https://cdn.webshopapp.com/shops/277570/themes/177681/assets/bootstrap-min.js?20221116094336"></script>
+    <script type="text/javascript" src="https://cdn.webshopapp.com/assets/gui.js?2022-11-01"></script>
+    <script type="text/javascript" src="https://cdn.webshopapp.com/assets/gui-responsive-2-0.js?2022-11-01"></script>
+
+
+
+</body>
+
+</html>

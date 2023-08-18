@@ -1,0 +1,332 @@
+/* 20220926120851 - v2 */
+.gui,
+.gui-block-linklist li a {
+  color: #000000;
+}
+
+.gui-page-title,
+.gui a.gui-bold,
+.gui-block-subtitle,
+.gui-table thead tr th,
+.gui ul.gui-products li .gui-products-title a,
+.gui-form label,
+.gui-block-title.gui-dark strong,
+.gui-block-title.gui-dark strong a,
+.gui-content-subtitle {
+  color: #000000;
+}
+
+.gui-block-inner strong {
+  color: #b5b5b5;
+}
+
+.gui a {
+  color: #000000;
+}
+
+.gui-input.gui-focus,
+.gui-text.gui-focus,
+.gui-select.gui-focus {
+  border-color: #000000;
+  box-shadow: 0 0 2px #000000;
+}
+
+.gui-select.gui-focus .gui-handle {
+  border-color: #000000;
+}
+
+.gui-block,
+.gui-block-title,
+.gui-buttons.gui-border,
+.gui-block-inner,
+.gui-image {
+  border-color: #848484;
+}
+
+.gui-block-title {
+  color: #848484;
+  background-color: #848484;
+}
+
+.gui-content-title {
+  color: #848484;
+}
+
+.gui-form .gui-field .gui-description span {
+  color: #000000;
+}
+
+.gui-block-inner {
+  background-color: #7e7e7e;
+}
+
+.gui-block-option {
+  border-color: #ececec;
+  background-color: #f8f8f8;
+}
+
+.gui-block-option-block {
+  border-color: #ececec;
+}
+
+.gui-block-title strong {
+  color: #848484;
+}
+
+.gui-line,
+.gui-cart-sum .gui-line {
+  background-color: #c7c7c7;
+}
+
+.gui ul.gui-products li {
+  border-color: #dadada;
+}
+
+.gui-block-subcontent,
+.gui-content-subtitle {
+  border-color: #dadada;
+}
+
+.gui-faq,
+.gui-login,
+.gui-password,
+.gui-register,
+.gui-review,
+.gui-sitemap,
+.gui-block-linklist li,
+.gui-table {
+  border-color: #dadada;
+}
+
+.gui-block-content .gui-table {
+  border-color: #ececec;
+}
+
+.gui-table thead tr th {
+  border-color: #c7c7c7;
+  background-color: #f8f8f8;
+}
+
+.gui-table tbody tr td {
+  border-color: #ececec;
+}
+
+.gui a.gui-button-large,
+.gui a.gui-button-small {
+  border-color: #848484;
+  color: #848484;
+  background-color: #848484;
+}
+
+.gui a.gui-button-large.gui-button-action,
+.gui a.gui-button-small.gui-button-action {
+  border-color: #848484;
+  color: #848484;
+  background-color: #848484;
+}
+
+.gui a.gui-button-large:active,
+.gui a.gui-button-small:active {
+  background-color: #696969;
+  border-color: #696969;
+}
+
+.gui a.gui-button-large.gui-button-action:active,
+.gui a.gui-button-small.gui-button-action:active {
+  background-color: #696969;
+  border-color: #696969;
+}
+
+.gui-input,
+.gui-text,
+.gui-select,
+.gui-number {
+  border-color: #848484;
+  background-color: #ffffff;
+}
+
+.gui-select .gui-handle,
+.gui-number .gui-handle {
+  border-color: #848484;
+}
+
+.gui-number .gui-handle a {
+  background-color: #ffffff;
+}
+
+.gui-input input,
+.gui-number input,
+.gui-text textarea,
+.gui-select .gui-value {
+  color: #848484;
+}
+
+.gui-progressbar {
+  background-color: #000000;
+}
+
+/* custom */
+#dmws_perfect-search { z-index: 9999999 !important;}
+
+.dmws-announcement.no-overlay { margin: 0; }
+.right-menu .dmws-announcement { display: none; }
+.single-kleur { border-radius: 50%; border: 1px solid #efefef; height: 40px; margin-right: 10px; overflow: hidden; position: relative; width: 40px; }
+.single-kleur span { height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+.products-list li .colors .single-kleur, .products-list li .colors .single-kleur.single-kleur span { height: 21px !important; width: 21px; }
+*[data-kleur]::after { bottom: 2px; content: ''; height: 50%; left: auto; position: absolute; right: -7px; top: auto; transform: rotate(135deg); width: 100%; }
+.products-list *[data-kleur]::after { right: -3px; }
+
+*[data-kleur="almost-black"] { background-color: #262626; }
+*[data-kleur="antraciet"] { background-color: #434243; }
+*[data-kleur="antraciet-melange"] { background-color: #434243; }
+*[data-kleur="aubergine"] { background-color: #5d0951; }
+*[data-kleur="beige"] { background-color: #decbb0; }
+*[data-kleur="beige-combinatie"] { background-color: #decbb0; }
+*[data-kleur="beige-melange"] { background-color: #cd997c; }
+*[data-kleur="beige-bruin"] { background-color: #a98a5d; }
+*[data-kleur="blauw"] { background-color: #070160; }
+*[data-kleur="bok"] { background-color: #a21a27; }
+*[data-kleur="bordo"] { background-color: #780a16; }
+*[data-kleur="bosco"] { background-color: #112f16; }
+*[data-kleur="brons"] { background-color: #dab19c; }
+*[data-kleur="bruin"] { background-color: #452906; }
+*[data-kleur="caramel"] { background-color: #a4624d; }
+*[data-kleur="chocola"] { background-color: #301202; }
+*[data-kleur="cognac"] { background-color: #9c5e2c; }
+*[data-kleur="denim-combinatie"] { background-color: #5d6f86; }
+*[data-kleur="donker-beige"] { background-color: #a88c73; }
+*[data-kleur="donker-grijs"] { background-color: #434243; }
+*[data-kleur="donker-jeans"] { background-color: #293a5b; }
+*[data-kleur="dune"] { background-color: #d19f71; }
+*[data-kleur="ecru"] { background-color: #f4eede; }
+*[data-kleur="fuchsia"] { background-color: #df527f; }
+*[data-kleur="grijs"] { background-color: #999999; }
+*[data-kleur="grijs-antraciet"] { background-color: #999999; }
+*[data-kleur="grijs-combinatie"] { background-color: #c7c4bd; }
+*[data-kleur="grijs-melange"] { background-color: #8c8a86; }
+*[data-kleur="grijs-blauw"] { background-color: #999999; }
+*[data-kleur="groen"] { background-color: #246547; }
+*[data-kleur="groen-marine"] { background-color: #246547; }
+*[data-kleur="huidskleur"] { background-color: #d7ba99; }
+*[data-kleur="jeans"] { background-color: #293a5b; }
+*[data-kleur="kobalt-blauw"] { background-color: #133167; }
+*[data-kleur="licht-beige"] { background-color: #d3c8c2; }
+*[data-kleur="licht-grijs"] { background-color: #acadb1; }
+*[data-kleur="licht-jeans"] { background-color: #a6b5c8; }
+*[data-kleur="marine"] { background-color: #123055; }
+*[data-kleur="marine-grijs"] { background-color: #123055; }
+*[data-kleur="marine-groen"] { background-color: #123055; }
+*[data-kleur="marine-oud-roze"] { background-color: #123055; }
+*[data-kleur="marine-rood"] { background-color: #123055; }
+*[data-kleur="midden-beige"] { background-color: #c6b6a8; }
+*[data-kleur="midden-grijs"] { background-color: #999999; }
+*[data-kleur="militair"] { background-color: #184018; }
+*[data-kleur="mokka"] { background-color: #2e2803; }
+*[data-kleur="mosterd"] { background-color: #d89a03; }
+*[data-kleur="mosterd-caramel"] { background-color: #d89a03; }
+*[data-kleur="multi-blauw"] { background-color: #5d6f86; }
+*[data-kleur="multi-bruin"] { background-color: #5d6f86; }
+*[data-kleur="multi-grijs"] { background-color: #999999; }
+*[data-kleur="multi-marine"] { background-color: #123055; }
+*[data-kleur="multi-zwart"] { background-color: #000000; }
+*[data-kleur="muskaat"] { background-color: #54391a; }
+*[data-kleur="navy"] { background-color: #123055; }
+*[data-kleur="noors-grijs"] { background-color: #9b938b; }
+*[data-kleur="oker"] { background-color: #e8b021; }
+*[data-kleur="perle"] { background-color: #7a5645; }
+*[data-kleur="pils"] { background-color: #12825d; }
+*[data-kleur="poeder"] { background-color: #cea684; }
+*[data-kleur="radler"] { background-color: #edc23e; }
+*[data-kleur="rood"] { background-color: #a20a28; }
+*[data-kleur="roze"] { background-color: #dabcc4; }
+*[data-kleur="roze-geel"] { background-color: #f47bb2; }
+*[data-kleur="sekt"] { background-color: #d7ba99; }
+*[data-kleur="singapore"] { background-color: #1c1c1c; }
+*[data-kleur="wineblush"] { background-color: #996f3d; }
+*[data-kleur="wit"] { background-color: #ffffff; }
+*[data-kleur="zilver"] { background-color: #e3eaf2; }
+*[data-kleur="zwart"] { background-color: #000000; }
+*[data-kleur="zwart-rood"] { background-color: #000000; }
+
+*[data-kleur="almost-black"]::after { background-color: #262626; }
+*[data-kleur="antraciet"]::after { background-color: #434243; }
+*[data-kleur="antraciet-melange"]::after { background-color: #434243; }
+*[data-kleur="aubergine"]::after { background-color: #5d0951; }
+*[data-kleur="beige"]::after { background-color: #decbb0; }
+*[data-kleur="beige-combinatie"]::after { background-color: #a49284; }
+*[data-kleur="beige-melange"]::after { background-color: #cd997c; }
+*[data-kleur="beige-bruin"]::after { background-color: #a98a5d; }
+*[data-kleur="blauw"]::after { background-color: #070160; }
+*[data-kleur="bok"]::after { background-color: #a21a27; }
+*[data-kleur="bordo"]::after { background-color: #780a16; }
+*[data-kleur="bosco"]::after { background-color: #112f16; }
+*[data-kleur="brons"]::after { background-color: #dab19c; }
+*[data-kleur="bruin"]::after { background-color: #452906; }
+*[data-kleur="caramel"]::after { background-color: #a4624d; }
+*[data-kleur="chocola"]::after { background-color: #301202; }
+*[data-kleur="cognac"]::after { background-color: #9c5e2c; }
+*[data-kleur="denim-combinatie"]::after { background-color: #505769; }
+*[data-kleur="donker-beige"]::after { background-color: #a88c73; }
+*[data-kleur="donker-grijs"]::after { background-color: #434243; }
+*[data-kleur="donker-jeans"]::after { background-color: #293a5b; }
+*[data-kleur="dune"]::after { background-color: #d19f71; }
+*[data-kleur="ecru"]::after { background-color: #f4eede; }
+*[data-kleur="fuchsia"]::after { background-color: #df527f; }
+*[data-kleur="grijs"]::after { background-color: #999999; }
+*[data-kleur="grijs-antraciet"]::after { background-color: #434243; }
+*[data-kleur="grijs-combinatie"]::after { background-color: #434243; }
+*[data-kleur="grijs-melange"]::after { background-color: #8c8a86; }
+*[data-kleur="grijs-blauw"]::after { background-color: #123055; }
+*[data-kleur="groen"]::after { background-color: #246547; }
+*[data-kleur="groen-marine"]::after { background-color: #123055; }
+*[data-kleur="huidskleur"]::after { background-color: #d7ba99; }
+*[data-kleur="jeans"]::after { background-color: #293a5b; }
+*[data-kleur="kobalt-blauw"]::after { background-color: #133167; }
+*[data-kleur="licht-beige"]::after { background-color: #d3c8c2; }
+*[data-kleur="licht-grijs"]::after { background-color: #acadb1; }
+*[data-kleur="licht-jeans"]::after { background-color: #a6b5c8; }
+*[data-kleur="marine"]::after { background-color: #123055; }
+*[data-kleur="marine-grijs"]::after { background-color: #999999; }
+*[data-kleur="marine-groen"]::after { background-color: #246547; }
+*[data-kleur="marine-oud-roze"]::after { background-color: #e1cad0; }
+*[data-kleur="marine-rood"]::after { background-color: #a20a28; }
+*[data-kleur="midden-beige"]::after { background-color: #c6b6a8; }
+*[data-kleur="midden-grijs"]::after { background-color: #999999; }
+*[data-kleur="militair"]::after { background-color: #184018; }
+*[data-kleur="mokka"]::after { background-color: #2e2803; }
+*[data-kleur="mosterd"]::after { background-color: #d89a03; }
+*[data-kleur="mosterd-caramel"]::after { background-color: #a4624d; }
+*[data-kleur="multi-blauw"]::after { background-color: #505769; }
+*[data-kleur="multi-bruin"]::after { background-color: #505769; }
+*[data-kleur="multi-grijs"]::after { background-color: #434243; }
+*[data-kleur="multi-marine"]::after { background-color: #123055; }
+*[data-kleur="multi-zwart"]::after { background-color: #000000; }
+*[data-kleur="muskaat"]::after { background-color: #54391a; }
+*[data-kleur="navy"]::after { background-color: #123055; }
+*[data-kleur="noors-grijs"]::after { background-color: #9b938b; }
+*[data-kleur="oker"]::after { background-color: #e8b021; }
+*[data-kleur="perle"]::after { background-color: #7a5645; }
+*[data-kleur="pils"]::after { background-color: #12825d; }
+*[data-kleur="poeder"]::after { background-color: #cea684; }
+*[data-kleur="radler"]::after { background-color: #edc23e; }
+*[data-kleur="rood"]::after { background-color: #a20a28; }
+*[data-kleur="roze"]::after { background-color: #dabcc4; }
+*[data-kleur="roze-geel"]::after { background-color: #f3e8a0; }
+*[data-kleur="sekt"]::after { background-color: #d7ba99; }
+*[data-kleur="singapore"]::after { background-color: #1c1c1c; }
+*[data-kleur="wineblush"]::after { background-color: #996f3d; }
+*[data-kleur="wit"]::after { background-color: #ffffff; }
+*[data-kleur="zilver"]::after { background-color: #e3eaf2; }
+*[data-kleur="zwart"]::after { background-color: #000000; }
+*[data-kleur="zwart-rood"]::after { background-color: #a20a28; }
+
+
+/* Kleuren bolletjes */
+.products-list .colors .zwart { background-color: #000; }
+.products-list .colors .grijs { background-color: #53595c; }
+.products-list .colors .wit { background-color: #fff; }
+.products-list .colors .blauw { background-color: #131932; }
+.products-list .colors .rood { background-color: #f00; }
+
+/* gui input */
+.gui-input {background:none;}
